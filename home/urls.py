@@ -1,7 +1,5 @@
 from django.urls import path
-from views import pomodoro_timer, login, signup, logout, add, delete
-
-# Define url patterns for different views
+from .views import pomodoro_timer, login, signup, logout, add, delete
 
 urlpatterns = [
     path('', pomodoro_timer, name='pomodoro_timer'),
