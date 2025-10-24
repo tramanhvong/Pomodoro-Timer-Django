@@ -94,14 +94,3 @@ Add tests under `home/tests.py` or `home/tests/`.
 
 - Open an issue describing the problem or feature.
 - Create a branch, make changes, and submit a pull request.
-
-## Next steps / suggestions
-
-- Add `requirements.txt` to pin dependencies.
-- Add basic unit tests to cover the `pomodoro_timer` view and user flows (signup/login/add/delete timer).
-- Add a `Dockerfile` or GitHub Actions workflow for CI.
-
-If you want, I can:
-
-- Add a `requirements.txt` automatically (detect installed packages in the venv).
-- Add a basic test that asserts `GET /` returns 200.
