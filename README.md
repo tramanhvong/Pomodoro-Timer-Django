@@ -47,7 +47,7 @@ pip install -r requirements.txt
 
 Open PowerShell at the repository root (where `manage.py` lives, the folder named `pomodoro` in this repo structure), then:
 
-```powershell
+```powershell 
 # activate the venv (if you created/are using the one in repo)
 .\pomodoro_env\Scripts\Activate.ps1
 
