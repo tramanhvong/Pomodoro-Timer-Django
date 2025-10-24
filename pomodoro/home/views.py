@@ -14,7 +14,7 @@ def pomodoro_timer(request):
 
     if len(timers) == 0:
         return render(request, 
-                      "pomodoro_timer.html",
+                      "home/pomodoro_timer.html",
                       {'form': form,
                        'editable': False,
                        'timers': None,
