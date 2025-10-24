@@ -67,7 +67,7 @@ function resetTimer() {
     mainIsTimerRunning = false;
     mainSeconds = 0;
     mainHours = 0;
-    mainMinutes = 25;
+    mainMinutes = 50;
     updateMainTimerDisplay();
 }
 
