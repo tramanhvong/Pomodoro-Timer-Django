@@ -151,6 +151,14 @@ def add(request, id):
                            "editable": editable,
                            "timers": timers
                            })
+    else:
+        form = PomodoroForm(instance=id)
+    return render(request, 
+                'home/pomodoro.html', {
+                'form': form,
+                'editable': True,
+                'timers': Timers.objects.all()
+            })
 
 
 def delete(request, id):

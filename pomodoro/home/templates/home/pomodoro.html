@@ -64,70 +64,59 @@
         <div class="container">
             <p class=" h3 align-items-center">Your Tasks By Categories</p>
             {% if user.is_authenticated%}
-
-
             <div class="row">
-                {% if editable %}
-                <form id="pomodoroForm" method="POST" action="{% url 'add' user.id %}">
-                    {% csrf_token %}
-                    <div class="h5 col-lg-12  mt-5 editable--form">
-                        {{form}}
-                        <div class="editable--form--btn text-center">
-                            <button class=" btn btn-primary " type="submit">Save</button>
+                <div class="container mt-5 p-5  bg-opacity-10 rounded ">
+                    {% for timer in timers %}
+                    <div class="row text-center">
+                        <div class="col">
+                            <p class="text-center">Category : {{ timer.category }}</p>
+                            <p class="text-center">Title : {{ timer.title }}</p>
                         </div>
-                    </div>
-                </form>
-                {% else %}
+                        <div class="col d-flex align-items-center justify-content-center timer">
+                            <span id="hours{{ timer.id }}">{{ timer.hours }}</span>:
+                            <span id="minutes{{ timer.id }}">{{ timer.minutes }}</span>:
+                            <span id="seconds{{ timer.id }}">{{ timer.seconds }}</span>
 
-                {% if timers is None %}
-                <div class="h5 col-lg-12 mt-5 text-center">
-                    <p class="h4 text-center">No timer is set</p>
-                </div>
-
-                {% else %}
-
-                {% for timer in timers %}
-                  {% if timer.uuid == user.id %}
-
-              <div class="container mt-5 p-5  bg-opacity-10 rounded ">
-                <div class="row text-center">
-                    <div class="col ">
-                        <p class="fw-bolder text-center fs-3">Category : {{ timer.category }}</p>
-                        <p class="fw-bolder text-center">Title : {{ timer.title }}</p>
-                    </div>
-                    <div class="col d-flex align-items-center justify-content-center timer">
-                      <span id="hours{{ timer.id }}">{{ timer.hours }}</span>:
-                      <span id="minutes{{ timer.id }}">{{ timer.minutes }}</span>:
-                      <span id="seconds{{ timer.id }}">{{ timer.seconds }}</span>
-
-                      <button class="btn btn-primary m-2" 
-                              onclick="startITimer('{{ timer.id }}')">Start</button>
-                      <button class="btn btn-primary m-2" 
-                              onclick="pauseITimer('{{ timer.id }}')">Pause</button>
-                      <button class="btn btn-primary m-2" 
-                              onclick="resetITimer('{{ timer.id }}')">Reset</button>
+                            <button class="btn btn-primary m-2" 
+                                    onclick="startITimer('{{ timer.id }}')">Start</button>
+                            <button class="btn btn-primary m-2" 
+                                    onclick="pauseITimer('{{ timer.id }}')">Pause</button>
+                            <button class="btn btn-primary m-2" 
+                                    onclick="resetITimer('{{ timer.id }}')">Reset</button>
                             <a class="btn btn-danger m-2"  
-                               href="/delete/{{ timer.id }}">Delete</a>
-                        <span id="initialMinutes{{ timer.id }}" 
-                              style="display: none;">{{ timer.minutes }}</span>
-                        <span id="initialSeconds{{ timer.id }}" 
-                              style="display: none;">{{ timer.seconds }}</span>
+                                href="/delete/{{ timer.id }}">Delete</a>
 
-                          <!-- Add an additional hidden input field to store the timer ID -->
-                          <input type="hidden" class="timerId" value="{{ timer.id }}">
-                    </div>
+                            <span id="initialHours{{ timer.id }}"
+                                    style="display: none;">{{ timer.hours }}</span>
+                            <span id="initialMinutes{{ timer.id }}" 
+                                    style="display: none;">{{ timer.minutes }}</span>
+                            <span id="initialSeconds{{ timer.id }}" 
+                                    style="display: none;">{{ timer.seconds }}</span>
+
+                                <!-- Add an additional hidden input field to store the timer ID -->
+                                <input type="hidden" class="timerId" value="{{ timer.id }}">
+                        </div>
+                    {%endfor%}
                 </div>
 
                 <div class="round-time-bar" data-style="smooth" style="--duration: 150;">
                     <div id="progressBar{{ timer.id }}"></div>
                 </div>
-    
-                  </div>
-              {%endif%}
-                {% endfor %}
-                {% endif %}
-                {% endif %}
             </div>
+
+            <div class="m-5 mt-0">
+                <form id="pomodoroForm" method="POST" action="{% url 'add' user.id %}">
+                {% csrf_token %}
+                <div class="h5 col-lg-2  m-0 editable--form">
+                    {{form}}
+                    <div class="editable--form--btn text-center">
+                        <button class=" btn btn-primary " type="submit">Save</button>
+                    </div>
+                </div>
+            </form> 
+            </div>
+
+
             {% else %}
             <div class="row">
 

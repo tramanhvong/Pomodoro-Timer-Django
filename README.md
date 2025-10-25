@@ -63,6 +63,71 @@ python manage.py runserver
 
 Then open http://127.0.0.1:8000/ in your browser.
 
+# Pomodoro Django
+
+A simple Pomodoro timer web app built with Django.
+
+This repository contains a small Django project (`pomodoro`) with a single app `home` that provides user signup/login and per-user Pomodoro timers.
+
+## Quick overview
+
+- Django project: `core`
+- App: `home`
+- Database: SQLite (`db.sqlite3`)
+- Virtual environment in repository (optional): `pomodoro_env/`
+- Templates: `home/templates/home/` (example: `pomodoro.html`, `login.html`, `signup.html`)
+
+## Requirements
+
+- Windows (instructions below use PowerShell)
+- Python 3.10+ (the project uses a virtual environment in `pomodoro_env/`)
+- Django 5.2.7 (used when this project was created)
+
+If you don't have a `requirements.txt`, you can install Django directly into your venv:
+
+```powershell
+# create a venv if you don't have one
+python -m venv pomodoro_env
+
+# activate the venv (PowerShell)
+.\pomodoro_env\Scripts\Activate.ps1
+
+# install Django (pin to the version used in the project)
+python -m pip install "django==5.2.7"
+```
+
+If you prefer to create a `requirements.txt`, add:
+
+```
+Django==5.2.7
+```
+
+then run:
+
+```powershell
+pip install -r requirements.txt
+```
+
+## Setup & Run (PowerShell)
+
+Open PowerShell at the repository root (where `manage.py` lives, the folder named `pomodoro` in this repo structure), then:
+
+```powershell
+# activate the venv (if you created/are using the one in repo)
+.\pomodoro_env\Scripts\Activate.ps1
+
+# apply migrations
+python manage.py migrate
+
+# create an admin user (optional)
+python manage.py createsuperuser
+
+# run the development server
+python manage.py runserver
+```
+
+Then open http://127.0.0.1:8000/ in your browser.
+
 ## Project structure (important files)
 
 - `pomodoro/` – Django project root (contains `manage.py`, `db.sqlite3`)
@@ -71,6 +136,26 @@ Then open http://127.0.0.1:8000/ in your browser.
   - `views.py` – request handlers (renders templates in `home/`)
   - `templates/home/` – HTML templates (`pomodoro.html`, `login.html`, `signup.html`)
   - `static/` (if present) – static assets like CSS/JS referenced by templates
+
+## Docker / Container usage
+
+This project includes a `Dockerfile` in the `pomodoro/` directory and a `requirements.txt` file. The Dockerfile builds a minimal image that:
+
+- Installs Python and minimal system build deps
+- Installs Python packages from `requirements.txt`
+- Copies the project into the container
+- Runs migrations and `collectstatic` via an entrypoint script
+- Starts the app with Gunicorn on port 8000
+
+Basic build and run (from the `pomodoro/` folder):
+
+```powershell
+# build the image (from inside the pomodoro folder)
+docker build -t pomodoro:latest .
+
+# run the container (maps container port 8000 -> host 8000)
+docker run --rm -p 8000:8000 --name pomodoro_app pomodoro:latest
+```
 
 ## Common troubleshooting
 
