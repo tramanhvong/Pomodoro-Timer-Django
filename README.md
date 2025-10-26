@@ -18,31 +18,6 @@ This repository contains a small Django project (`pomodoro`) with a single app `
 - Python 3.10+ (the project uses a virtual environment in `pomodoro_env/`)
 - Django 5.2.7 (used when this project was created)
 
-If you don't have a `requirements.txt`, you can install Django directly into your venv:
-
-```powershell
-# create a venv if you don't have one
-python -m venv pomodoro_env
-
-# activate the venv (PowerShell)
-.\pomodoro_env\Scripts\Activate.ps1
-
-# install Django (pin to the version used in the project)
-python -m pip install "django==5.2.7"
-```
-
-If you prefer to create a `requirements.txt`, add:
-
-```
-Django==5.2.7
-```
-
-then run:
-
-```powershell
-pip install -r requirements.txt
-```
-
 ## Setup & Run (PowerShell)
 
 Open PowerShell at the repository root (where `manage.py` lives, the folder named `pomodoro` in this repo structure), then:
@@ -82,31 +57,6 @@ This repository contains a small Django project (`pomodoro`) with a single app `
 - Windows (instructions below use PowerShell)
 - Python 3.10+ (the project uses a virtual environment in `pomodoro_env/`)
 - Django 5.2.7 (used when this project was created)
-
-If you don't have a `requirements.txt`, you can install Django directly into your venv:
-
-```powershell
-# create a venv if you don't have one
-python -m venv pomodoro_env
-
-# activate the venv (PowerShell)
-.\pomodoro_env\Scripts\Activate.ps1
-
-# install Django (pin to the version used in the project)
-python -m pip install "django==5.2.7"
-```
-
-If you prefer to create a `requirements.txt`, add:
-
-```
-Django==5.2.7
-```
-
-then run:
-
-```powershell
-pip install -r requirements.txt
-```
 
 ## Setup & Run (PowerShell)
 
